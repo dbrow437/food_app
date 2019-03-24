@@ -10,8 +10,10 @@ passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
     callbackURL: '/auth/google/callback'
-    }, (accessToken) => {
+    }, (accessToken, refreshToken, profile, done) => {
         console.log(accessToken)
+        console.log('refresh token', refreshToken)
+        console.log('profile', profile)
     })
 );
 
@@ -19,7 +21,9 @@ passport.use(new GoogleStrategy({
 app.get('/auth/google', passport.authenticate('google', {
     scope: ['profile', 'email']
     })
-)
+);
+
+app.get('/auth/google/callback', passport.authenticate('google'));
 
 
 app.listen(5000);
