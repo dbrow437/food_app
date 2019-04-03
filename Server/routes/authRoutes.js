@@ -10,6 +10,16 @@ module.exports = (app) => {
     
     app.get('/auth/google/callback', passport.authenticate('google'));
 
+    // facebook
+    // app.get('/auth/facebook', passport.authenticate('facebook', {
+    //     scope: ['profile', 'email']
+    //     })
+    // );
+    
+    // app.get('/auth/facebook/callback', passport.authenticate('facebook'));
+    
+    //logout
+
     app.get('/api/logout', (req, res) => {
         req.logout()
         res.send(req.user)
@@ -19,13 +29,7 @@ module.exports = (app) => {
         res.send(req.user)
     });
 
-    // facebook
-    app.get('/auth/facebook', passport.authenticate('facebook', {
-        scope: ['profile', 'email']
-        })
-    );
-    
-    app.get('/auth/facebook/callback', passport.authenticate('facebook'));
+
 
 }
 

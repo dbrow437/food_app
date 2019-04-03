@@ -36,21 +36,21 @@ passport.use(new GoogleStrategy({
     })
 );
 
-passport.use(new FacebookStrategy({
-    clientID: keys.facebookClientID,
-    clientSecret: keys.facebookClientSecret,
-    callbackURL: '/auth/facebook/callback'
-    }, 
-    (accessToken, refreshToken, profile, done) => {
-        User.findOne({ facebookId: profile.id })
-            .then((existingUser) => {
-                if (existingUser) {
-                    done(null, existingUser);
-                } else {
-                    new User({ facebookId: profile.id })
-                        .save()
-                        .then(user => done(null, user));
-                }
-            })
-    })
-);
+// passport.use(new FacebookStrategy({
+//     clientID: keys.facebookClientID,
+//     clientSecret: keys.facebookClientSecret,
+//     callbackURL: '/auth/facebook/callback'
+//     }, 
+//     (accessToken, refreshToken, profile, done) => {
+//         User.findOne({ facebookId: profile.id })
+//             .then((existingUser) => {
+//                 if (existingUser) {
+//                     done(null, existingUser);
+//                 } else {
+//                     new User({ facebookId: profile.id })
+//                         .save()
+//                         .then(user => done(null, user));
+//                 }
+//             })
+//     })
+// );
